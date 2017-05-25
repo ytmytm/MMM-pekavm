@@ -3,7 +3,7 @@
 
 This module is an extension of the amazing [MagicMirror<sup>2</sup>](https://github.com/MichMich/MagicMirror) project by [MichMich](https://github.com/MichMich/). <P>
 
-It is heavily based upon excellent [MMM-KVV](https://github.com/yo-less/MMM-KVV) module. Even this README is 80% coming from there.
+It is heavily based upon excellent [MMM-KVV](https://github.com/yo-less/MMM-KVV) module by [yo-less](https://github.com/yo-less/). Even this README is 80% coming from there.
 
 ## Languages
 The basis language is `Polish (pl)` but due to almost identical code to MMM-KVV language support for `German (de)` and `English (en)` locales was already possible.
