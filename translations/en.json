@@ -1,0 +1,9 @@
+{
+  "LINE": "Line",
+  "DESTINATION": "Destination",
+  "DEPARTURE": "Departure",
+  "NOW": "now",
+  "NO-TRAMS": "No connections available",
+  "MINUTE": "<1 minute",
+  "MINUTES": "minutes"  
+}

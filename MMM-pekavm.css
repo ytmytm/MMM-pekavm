@@ -1,0 +1,36 @@
+.MMM-pekavm .table {
+    border-spacing: 0px 0px;
+    border-collapse: separate;
+    text-align: left;
+	}
+
+.MMM-pekavm .spacerRow {
+	padding-bottom: 5px;
+	}
+
+.MMM-pekavm .destination {
+	font-weight: normal;
+	color: white;
+	}
+	
+.MMM-pekavm .line {
+    border-spacing: 10px 0px;
+    border-collapse: separate;
+    text-align: left;
+	color:white;
+	font-weight: normal;
+	width: 50px;
+	}
+	
+.MMM-pekavm .departure {
+	padding-left: 10px;
+	text-align: right;
+	font-weight: normal;
+	color: white;
+	}
+	
+.MMM-pekavm .noTramRow {
+	font-weight: normal;
+	color: white;
+	}
+	

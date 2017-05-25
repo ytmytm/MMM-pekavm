@@ -1,0 +1,29 @@
+{
+  "name": "MMM-pekavm",
+  "version": "1.0.0",
+  "description": "MagicMirror² module - station monitor for Poznań public transport system (PEKA Wirtualny Monitor)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yo-less/MMM-KVV.git"
+  },
+  "keywords": [
+    "MagicMirror",
+    "ZTM",
+    "MPK",
+    "PEKA", "Wirtualny Monitor", "Poznań",
+    "magic mirror",
+    "smart mirror",
+    "public transport",
+    "local transit"
+  ],
+  "author": "Maciej Witkowiak",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ytmytm/MMM-pekavm/issues"
+  },
+  "homepage": "https://github.com/ytmytm/MMM-pekavm#readme",
+  "dependencies": {
+    "request": "^2.74.0",
+    "http-parser-js":"^0.4.4",
+  }
+}
