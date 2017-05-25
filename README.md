@@ -78,6 +78,8 @@ Sample configuration entry for your `~/MagicMirror/config/config.js` with option
 
 Or you can just write down this symbol from the physical departures table on your stop.
 
+Or you can search [ZTM website](http://ztm.poznan.pl/komunikacja/rozklad/) and check virtual image of a departures table with stop symbol [this link leads to RSTA41](http://ztm.poznan.pl/komunikacja/rozklad/#/rozklad/wgLinii/ZTM_MPK/0/233/1).
+
 ## Config Options
 | **Option** | **Default** | **Description** |
 | :---: | :---: | --- |
