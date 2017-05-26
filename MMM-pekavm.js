@@ -136,11 +136,13 @@ Module.register("MMM-pekavm", {
 			}
 		}
 	} else {
-	// parse data.departure to HH:MM
-		var d = new Date(data.departure);
-		// we need to use UTC because PEKA server lies about time zone
-		// fixme: use global time config (24/12)
-		departure.innerHTML = d.getUTCHours()+":"+d.getUTCMinutes();
+		// parse data.departure to HH:MM
+		var m = moment(data.departure);
+		var hourSymbol = "HH";
+		if (this.config.timeFormat !== 24) {
+			hourSymbol = "hh";
+		}
+		departure.innerHTML = m.format(hourSymbol+":mm");
 	}
         row.appendChild(departure);
 

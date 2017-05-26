@@ -53,6 +53,7 @@ module.exports = NodeHelper.create({
 			} else {
 				this.sendSocketNotification("TRAMSFAIL" + stopID, res);
 			}
+			//console.log(body);
 		} else {
                 	console.log("Error getting connections " + response.statusCode);
             	}
