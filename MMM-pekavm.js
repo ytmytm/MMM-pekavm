@@ -35,6 +35,15 @@ Module.register("MMM-pekavm", {
 		this.config.reload);
     },
 
+    notificationReceived: function(notification, payload, sender) {
+	if (notification === 'USER_PRESENCE') {
+	    this.sendSocketNotification(notification, payload);
+	    if (payload) { // update now
+		this.sendSocketNotification("CONFIG", this.config);
+	    }
+	}
+    },
+
     socketNotificationReceived: function (notification, payload) {
 	if (notification === "TRAMS" + this.config.stopID) {
 		this.peka_data = payload;
