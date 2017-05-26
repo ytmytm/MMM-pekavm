@@ -5,5 +5,6 @@
   "NOW": "Teraz!",
   "NO-TRAMS": "Brak połączeń",
   "MINUTE": "<1 min.",
-  "MINUTES": "min."
+  "MINUTES": "min.",
+  "WRONG_STOP_ID_IN_CONFIG": "Nieznany symbol przystanku"
 }

@@ -5,5 +5,6 @@
   "NOW": "sofort",
   "NO-TRAMS": "Keine Verbindungen verf&uuml;gbar",
   "MINUTE": "Minute",
-  "MINUTES": "Minuten" 
+  "MINUTES": "Minuten",
+  "WRONG_STOP_ID_IN_CONFIG": "Incorrect stopID in configuration"
 }

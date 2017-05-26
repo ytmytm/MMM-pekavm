@@ -38,7 +38,12 @@ Module.register("MMM-pekavm", {
     socketNotificationReceived: function (notification, payload) {
 	if (notification === "TRAMS" + this.config.stopID) {
 		this.peka_data = payload;
+		this.peka_data.success = true;
 		this.updateDom();	
+	}
+	if (notification === "TRAMSFAIL" + this.config.stopID) {
+		this.peka_data = { success : false };
+		this.updateDom();
 	}
     },
 
@@ -52,6 +57,14 @@ Module.register("MMM-pekavm", {
             var text = document.createElement("div");
             text.innerHTML = this.translate("LOADING");
             text.className = "small dimmed";
+            wrapper.appendChild(text);
+	    return(wrapper)
+	}
+	if (!this.peka_data.success) {
+            var text = document.createElement("div");
+            text.innerHTML = this.translate("WRONG_STOP_ID_IN_CONFIG");
+            text.className = "small dimmed";
+	    header.innerHTML = this.config.stopID;
             wrapper.appendChild(text);
 	    return(wrapper)
 	}

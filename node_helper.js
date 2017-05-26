@@ -39,7 +39,12 @@ module.exports = NodeHelper.create({
 		var x = request.post(options, (error, response, body) => {
 		if (typeof response !== 'undefined') {
 	        if (response.statusCode === 200) {
-			this.sendSocketNotification("TRAMS" + stopID, JSON.parse(body).success);
+			var res = JSON.parse(body);
+			if (typeof res.success !== 'undefined') {
+				this.sendSocketNotification("TRAMS" + stopID, res.success);
+			} else {
+				this.sendSocketNotification("TRAMSFAIL" + stopID, res);
+			}
 		} else {
                 	console.log("Error getting connections " + response.statusCode);
             	}
