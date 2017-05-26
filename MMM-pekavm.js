@@ -98,6 +98,7 @@ Module.register("MMM-pekavm", {
 	table.appendChild(this.createSpacerRow());
 	// list trains
 	//console.log(this.peka_data.times);
+	var counter = 0;
 	for (var i=0;i<this.peka_data.times.length && i<this.config.maxConn;i++) {
 		var tram = this.peka_data.times[i];
 		var useLine = true;
@@ -106,13 +107,18 @@ Module.register("MMM-pekavm", {
 		}
 		if (useLine) {
 			table.appendChild(this.createDataRow(tram));
+			counter++;
 		}
 	};
 	wrapper.appendChild(table);
-	// reveal yourself
-	if (this.hidden) {
+	// if no trams were left after filtering then hide for a while
+	if (counter==0 && !this.hidden) {
+		this.hide(10000);
+	}
+	// otherwise reveal yourself
+	if (counter>0 && this.hidden) {
 		this.show(5000);
-	}	
+	}
 	return(wrapper);
     },
 
