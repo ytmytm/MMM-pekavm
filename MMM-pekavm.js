@@ -6,7 +6,7 @@
 Module.register("MMM-pekavm", {
     defaults: {
 		maxConn: '8',
-		lines: '',
+		lines: [], // for example ["12","238"]
 		labelRow: true,
 		stopID: 'RKAP71',
 		apiBase: 'http://www.peka.poznan.pl/vm/method.vm',
@@ -100,8 +100,13 @@ Module.register("MMM-pekavm", {
 	//console.log(this.peka_data.times);
 	for (var i=0;i<this.peka_data.times.length && i<this.config.maxConn;i++) {
 		var tram = this.peka_data.times[i];
-		// fixme: list only lines mentioned in this.config.lines
-		table.appendChild(this.createDataRow(tram));
+		var useLine = true;
+		if (this.config.lines.length>0) {
+			useLine = this.config.lines.indexOf(tram.line) >= 0;
+		}
+		if (useLine) {
+			table.appendChild(this.createDataRow(tram));
+		}
 	};
 	wrapper.appendChild(table);
 	// reveal yourself
