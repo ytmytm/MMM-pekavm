@@ -10,6 +10,7 @@ Module.register("MMM-pekavm", {
 		labelRow: true,
 		stopID: 'RKAP71',
 		apiBase: 'http://www.peka.poznan.pl/vm/method.vm',
+		timeFormat: config.timeFormat,
         	reload: 1 * 30 * 1000       // every half minute
     },
     // fixme: add ticker with important ZTM messages
@@ -20,6 +21,10 @@ Module.register("MMM-pekavm", {
             de: "translations/de.json",
 	    pl: "translations/pl.json"
         };
+    },
+
+    getScripts: function () {
+	return ['moment.js'];
     },
 
     getStyles: function () {
@@ -153,7 +158,7 @@ Module.register("MMM-pekavm", {
 		if (this.config.timeFormat !== 24) {
 			hourSymbol = "hh";
 		}
-		departure.innerHTML = m.format(hourSymbol+":mm");
+		departure.innerHTML = m.utc().format(hourSymbol+":mm");
 	}
         row.appendChild(departure);
 
