@@ -8,6 +8,7 @@ Module.register("MMM-pekavm", {
 		maxConn: '8',
 		lines: [], // for example ["12","238"]
 		labelRow: true,
+		alwaysShowTime: true,
 		stopID: 'RKAP71',
 		apiBase: 'http://www.peka.poznan.pl/vm/method.vm',
 		timeFormat: config.timeFormat,
@@ -139,6 +140,10 @@ Module.register("MMM-pekavm", {
         destination.innerHTML = data.direction;
         row.appendChild(destination);
 
+	var hourSymbol = "HH";
+	if (this.config.timeFormat !== 24) {
+		hourSymbol = "hh";
+	}
         var departure = document.createElement("td");
 	departure.className = "departure";
 	if (data.realTime) {
@@ -150,15 +155,13 @@ Module.register("MMM-pekavm", {
 			} else { 
 				departure.innerHTML = data.minutes + " "+this.translate("MINUTES"); // in ... minutes
 			}
+			if (this.config.alwaysShowTime) {
+			    departure.innerHTML = departure.innerHTML + " (" + moment(data.departure).utc().format(hourSymbol+":mm")+")";
+			}
 		}
 	} else {
 		// parse data.departure to HH:MM
-		var m = moment(data.departure);
-		var hourSymbol = "HH";
-		if (this.config.timeFormat !== 24) {
-			hourSymbol = "hh";
-		}
-		departure.innerHTML = m.utc().format(hourSymbol+":mm");
+		departure.innerHTML = moment(data.departure).utc().format(hourSymbol+":mm");
 	}
         row.appendChild(departure);
 
