@@ -84,7 +84,7 @@ Or you can search [ZTM website](http://ztm.poznan.pl/komunikacja/rozklad/) and c
 | stopID | RKAP46 | <BR>Which stop would you like to have displayed? <BR><EM> Default: Rondo Kaponiera (level 0 tram stop)</EM><P> |
 | maxConn<BR>`optional` | 8 | <BR> How many connections would you like to see?<P> |
 | lines<BR>`optional` | [] | <BR> Which lines would you like to see? <BR><EM> Default: all</EM><P> |
-| alwaysShowTime(BR>`optional`| true | <BR>Show time of departure also as wall clock time (HH:MM)<BR> <EM>Possible values: true, false</EM><P> |
+| alwaysShowTime<BR>`optional`| true | <BR>Show time of departure also as wall clock time (HH:MM)<BR> <EM>Possible values: true, false</EM><P> |
 | labelRow<BR>`optional` | true | <BR> Show or hide column headers<BR> <EM>Possible values: true, false</EM><P> |
 | reload<BR>`optional`  | 30000 | <BR> How often should the information be updated? (In milliseconds) <BR><EM> Default: Every half minute </EM><P> |
 
