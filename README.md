@@ -40,27 +40,24 @@ This module has been programmed to allow for multiple instances. Simply add more
 ## Configuration
 Sample minimum configuration entry for your `~/MagicMirror/config/config.js`:
 
-    ...
-    
+```javascript
     {
         module: 'MMM-pekavm',
         position: 'top_left',
         config: {
-			stopID: '',		// Which stop would you like to have displayed?			
+			stopID: 'RKAP46',		// Which stop would you like to have displayed?			
         }
     } 						// If this isn't your last module, add a comma after the bracket
-    
-    ...
+```
 
 Sample configuration entry for your `~/MagicMirror/config/config.js` with optional parameters:
 
-    ...
-    
+```javascript
     {
         module: 'MMM-pekavm',
         position: 'top_left',
         config: {
-			stopID: '',		// Which stop would you like to have displayed?
+			stopID: 'RKAP46',		// Which stop would you like to have displayed?
 			maxConn: 6,		// How many connections would you like to see?
 			lines: ["1","5","238"], // Which lines to show
 			alwaysShowTime: true, // Always show time of departure? (as HH:MM)
@@ -68,8 +65,7 @@ Sample configuration entry for your `~/MagicMirror/config/config.js` with option
 		    reload: 60000 	// How often should the information be updated? (In milliseconds)
         
     } 						// If this isn't your last module, add a comma after the bracket
-    
-    ...
+```
 
 ## Figuring out the correct stopID
 1. Open your web browser and navigate to [PEKA Wirtualny monitor](https://www.peka.poznan.pl/vm/).
