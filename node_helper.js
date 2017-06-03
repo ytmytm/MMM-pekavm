@@ -19,13 +19,28 @@ module.exports = NodeHelper.create({
 	 * return String - URL params.
 	 */
 	
-	getParams: function() {
-			var params;
-			params = {
+	getParams: function(method) {
+			var param = "";
+			switch (method) {
+				case "getServerTime":
+					param = ""; break;
+				case "getStopPoints":
+				case "getStreets":
+				case "getLines":
+					param = "pattern"; break;
+				case "getBollardsByStopPoint":
+				case "getBollardsByLine":
+				case "getTimesForAllBollards":
+					param = "name"; break;
+				case "getTimes":
+				case "findMessagesForBollard":
+					param = "symbol"; break;
+			}
+			var params = {
 				url: this.config.apiBase,
 				form: {
-					method:"getTimes",
-					p0:'{"symbol":"'+this.config.stopID+'"}'
+					method:method,
+					p0:'{"'+param+'":"'+this.config.stopID+'"}'
 				}
 			};
 			return params;
@@ -34,7 +49,10 @@ module.exports = NodeHelper.create({
     	socketNotificationReceived: function(notification, payload) {
         	if (notification === 'CONFIG') {
             		this.config = payload;
-	   		this.getData(this.getParams(),this.config.stopID);
+	   		this.getData("getTimes",this.config.stopID);
+			if (this.config.showMessages) {
+				this.getData("findMessagesForBollard",this.config.stopID);
+			}
         	}
 		if (notification === 'USER_PRESENCE') {
  			mm_kvv_up_detected = true;
@@ -42,16 +60,30 @@ module.exports = NodeHelper.create({
  		}
     	},
 
-    	getData: function(options,stopID) {
+    	getData: function(option,stopID) {
 		if (!mm_kvv_up_detected || mm_kvv_upresent) { // do anything only if user is present
-		var x = request.post(options, (error, response, body) => {
+		var x = request.post(this.getParams(option), (error, response, body) => {
 		if (typeof response !== 'undefined') {
 	        if (response.statusCode === 200) {
 			var res = JSON.parse(body);
-			if (typeof res.success !== 'undefined') {
-				this.sendSocketNotification("TRAMS" + stopID, res.success);
-			} else {
-				this.sendSocketNotification("TRAMSFAIL" + stopID, res);
+			switch (option) {
+			case "getTimes":
+				if (typeof res.success !== 'undefined') {
+					this.sendSocketNotification("TRAMS" + stopID, res.success);
+				} else {
+					this.sendSocketNotification("TRAMSFAIL" + stopID, res);
+				}
+				break;
+			case "findMessagesForBollard":
+				if ((typeof res.success !== 'undefined') && (typeof res.success[0] !== 'undefined')) {
+					if (typeof res.success[0].content !== 'undefined') {
+						if (res.success[0].content.length>0) {
+							this.sendSocketNotification("TRAMMSG"+stopID, res.success[0].content);
+//demodata body = '{"success":[{"content":"INFO: Od piątku 2.06 od godz. 20:00 do niedzieli 4.06 nastąpi wstrzymanie ruchu tramwajowego na Alejach Marcinkowskiego. Zmianie ulegną trasy linii nr 2, 5, 9, 13, 16 oraz 201. Szczegóły na stronie  <a href=\\"http://utn.pl/i6m0b\\">www.ztm.poznan.pl<\\/a>.","startDate":"2017-06-01T13:00:00.000Z","stopsGroups":[],"startHour":780,"endDate":"2017-06-04T23:45:00.000Z","endHour":1425}]}'
+						}
+					}
+				}
+				break;
 			}
 			//console.log(body);
 		} else {

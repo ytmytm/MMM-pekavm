@@ -33,4 +33,15 @@
 	font-weight: normal;
 	color: white;
 	}
-	
+
+.MMM-pekavm .bollardMsg {
+	width: 400px;
+	margin-left: 5px;
+	line-height: 15px;
+	overflow: hidden;
+	white-space: nowrap;
+	box-sizing: border-box;
+	animation: marquee 50s linear infinite;
+	-webkit-animation: marquee 50s linear infinite;
+	}
+

@@ -10,6 +10,7 @@ Module.register("MMM-pekavm", {
 		labelRow: true,
 		alwaysShowTime: true,
 		stopID: 'RKAP71',
+		showMessages: true,
 		apiBase: 'http://www.peka.poznan.pl/vm/method.vm',
 		timeFormat: config.timeFormat,
         	reload: 1 * 30 * 1000       // every half minute
@@ -54,10 +55,18 @@ Module.register("MMM-pekavm", {
 	if (notification === "TRAMS" + this.config.stopID) {
 		this.peka_data = payload;
 		this.peka_data.success = true;
+		if (typeof this.peka_msg === 'undefined') {
+			this.peka_msg = "";
+		}
 		this.updateDom();	
 	}
 	if (notification === "TRAMSFAIL" + this.config.stopID) {
 		this.peka_data = { success : false };
+		this.peka_msg = "";
+		this.updateDom();
+	}
+	if (notification === "TRAMMSG" + this.config.stopID) {
+		this.peka_msg = payload;
 		this.updateDom();
 	}
     },
@@ -84,6 +93,12 @@ Module.register("MMM-pekavm", {
 	    return(wrapper)
 	}
 	header.innerHTML = this.peka_data.bollard.name;
+	if (this.config.showMessages && this.peka_msg.length>0) {
+		var msg = document.createElement("marquee");
+		msg.innerHTML = this.peka_msg;
+		msg.className = "dimmed bollardMsg";
+		header.appendChild(msg);
+	}
 	// Start creating connections table
 	var table = document.createElement("table");
 	table.classList.add("small", "table");
