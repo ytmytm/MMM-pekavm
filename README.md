@@ -15,7 +15,7 @@ The basis language is `Polish (pl)` but due to almost identical code to MMM-KVV 
 ## Prerequisite
 A working installation of [MagicMirror<sup>2</sup>](https://github.com/MichMich/MagicMirror)
 
-You need to add following line on top of `~/MagicMirror/js/app.js`:
+You need to add following line on top of `~/MagicMirror/js/app.js` and `~/MagicMirror/js/electron.js`:
 ```
 process.binding('http_parser').HTTPParser = require('http-parser-js').HTTPParser;
 ```
