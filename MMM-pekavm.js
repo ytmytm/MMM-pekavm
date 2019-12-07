@@ -13,6 +13,7 @@ Module.register("MMM-pekavm", {
 		showMessages: true,
 		apiBase: 'http://www.peka.poznan.pl/vm/method.vm',
 		timeFormat: config.timeFormat,
+		minTime: 0 * 60 * 1000,     // ignore departures sooner than that
         	reload: 1 * 30 * 1000       // every half minute
     },
     // fixme: add ticker with important ZTM messages
@@ -123,10 +124,14 @@ Module.register("MMM-pekavm", {
 	for (var i=0;i<this.peka_data.times.length && i<this.config.maxConn;i++) {
 		var tram = this.peka_data.times[i];
 		var useLine = true;
+		var afterTime = true;
 		if (this.config.lines.length>0) {
 			useLine = this.config.lines.indexOf(tram.line) >= 0;
 		}
-		if (useLine) {
+		// subtract 1h because local time is reported as utc by server ('Z' at the end of departure string)
+		afterTime = moment(tram.departure).subtract(moment.duration(1,'hour')).isAfter(moment().add(moment.duration(this.config.minTime)));
+		console.log(afterTime);
+		if (useLine && afterTime) {
 			table.appendChild(this.createDataRow(tram));
 			counter++;
 		}
