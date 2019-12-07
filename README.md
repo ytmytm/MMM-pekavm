@@ -63,7 +63,8 @@ Sample configuration entry for your `~/MagicMirror/config/config.js` with option
 			alwaysShowTime: true,	// Always show time of departure? (as HH:MM)
 			showMessages: true,	// Show ZTM notifications about canceled lines, reroutes etc.?
 			labelRow: true,		// Show or hide column headers
-			reload: 60000		// How often should the information be updated? (In milliseconds)
+			minTime: 180000,	// Filter out departures earlier than this (in milliseconds)
+			reload: 60000		// How often should the information be updated? (in milliseconds)
 	}
     }						// If this isn't your last module, add a comma after the bracket
 ```
@@ -88,12 +89,13 @@ Or you can search [ZTM website](http://ztm.poznan.pl/komunikacja/rozklad/) and c
 | alwaysShowTime<BR>`optional`| true | <BR>Show time of departure also as wall clock time (HH:MM)<BR> <EM>Possible values: true, false</EM><P> |
 | showMessages<BR>`optional` | true | <BR>Show special ZTM notifications about canceled and rerouted lines, etc.<BR> <EM>Possible values: true, false</EM><P> |
 | labelRow<BR>`optional` | true | <BR> Show or hide column headers<BR> <EM>Possible values: true, false</EM><P> |
-| reload<BR>`optional`  | 30000 | <BR> How often should the information be updated? (In milliseconds) <BR><EM> Default: Every half minute </EM><P> |
+| minTime<BR>`optional` | 0 | <BR> Filter out departures earlier than this (in milliseconds) because you need this time to get to the stop anyway. <BR><EM> Default: 0 (show all departures)</EM><P> |
+| reload<BR>`optional`  | 30000 | <BR> How often should the information be updated? (in milliseconds) <BR><EM> Default: Every half minute </EM><P> |
 
 ## Licence
 MIT License
 
-Copyright (c) 2017 Maciej Witkowiak (https://github.com/ytmytm/)
+Copyright (c) 2017-2020 Maciej Witkowiak (https://github.com/ytmytm/)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
