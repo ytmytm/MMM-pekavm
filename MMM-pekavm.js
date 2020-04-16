@@ -130,7 +130,6 @@ Module.register("MMM-pekavm", {
 		}
 		// subtract 1h because local time is reported as utc by server ('Z' at the end of departure string)
 		afterTime = moment(tram.departure).subtract(moment.duration(1,'hour')).isAfter(moment().add(moment.duration(this.config.minTime)));
-		console.log(afterTime);
 		if (useLine && afterTime) {
 			table.appendChild(this.createDataRow(tram));
 			counter++;
