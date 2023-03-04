@@ -11,7 +11,7 @@ Module.register("MMM-pekavm", {
 		alwaysShowTime: true,
 		stopID: 'RKAP71',
 		showMessages: true,
-		apiBase: 'http://www.peka.poznan.pl/vm/method.vm',
+		apiBase: 'https://www.peka.poznan.pl/vm/method.vm',
 		timeFormat: config.timeFormat,
 		minTime: 0 * 60 * 1000,     // ignore departures sooner than that
         	reload: 1 * 30 * 1000       // every half minute
